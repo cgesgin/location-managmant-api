@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class BusinessException extends Exception {
 
-    private List<ErrorModel> errors;
+    private final transient List<ErrorModel> errors;
 
     public BusinessException(List<ErrorModel> errors) {
         this.errors = errors;

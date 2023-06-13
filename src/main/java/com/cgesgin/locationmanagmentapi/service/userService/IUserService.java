@@ -1,4 +1,4 @@
-package com.cgesgin.locationmanagmentapi.service.userService;
+package com.cgesgin.locationmanagmentapi.service.userservice;
 
 import com.cgesgin.locationmanagmentapi.core.dto.UserDto;
 import com.cgesgin.locationmanagmentapi.core.dto.UserLoginDto;

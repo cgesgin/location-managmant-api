@@ -1,4 +1,4 @@
-package com.cgesgin.locationmanagmentapi.service.userService;
+package com.cgesgin.locationmanagmentapi.service.userservice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class UserService implements IUserService {
         boolean success = false;
         User user = this.userRepository.findByEmailAndPassword(userLoginDto.getEmail(), userLoginDto.getPassword());
         if(user == null) {
-            List<ErrorModel> errors = new ArrayList<ErrorModel>();
+            List<ErrorModel> errors = new ArrayList<>();
             ErrorModel error = new ErrorModel();
             error.setCode(ErrorType.AUTH_INVALID_CEREDENTIAL.toString());
             error.setMessage("Incorrect password or username");
@@ -45,10 +45,10 @@ public class UserService implements IUserService {
     @Override
     public boolean register(UserDto userDto) throws BusinessException {
         
-        var email=this.userRepository.findByEmail(userDto.getEmail());
+        var user=this.userRepository.findByEmail(userDto.getEmail());
 
-        if(email!=null){
-            List<ErrorModel> errors = new ArrayList<ErrorModel>();
+        if(user !=null){
+            List<ErrorModel> errors = new ArrayList<>();
             ErrorModel error = new ErrorModel();
             error.setCode(ErrorType.ALREADY_EXISTS.toString());
             error.setMessage("Email already exists");
@@ -56,7 +56,7 @@ public class UserService implements IUserService {
             throw new BusinessException(errors);
         }
 
-        var data = this.userRepository.save(this.userConverter.convertDtoToEntity(userDto));
-        return data!=null ? true : false;
+        this.userRepository.save(this.userConverter.convertDtoToEntity(userDto));
+        return true;
     }
 }

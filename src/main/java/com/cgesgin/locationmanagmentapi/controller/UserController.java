@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cgesgin.locationmanagmentapi.core.dto.UserDto;
 import com.cgesgin.locationmanagmentapi.core.dto.UserLoginDto;
 import com.cgesgin.locationmanagmentapi.exception.BusinessException;
-import com.cgesgin.locationmanagmentapi.service.userService.IUserService;
+import com.cgesgin.locationmanagmentapi.service.userservice.IUserService;
 
 import jakarta.validation.Valid;
 
@@ -27,12 +27,12 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<Boolean> login(@RequestBody @Valid UserLoginDto userLoginDto) throws BusinessException {
-        return new ResponseEntity<Boolean>(userService.login(userLoginDto),HttpStatus.OK);
+        return new ResponseEntity<>(userService.login(userLoginDto),HttpStatus.OK);
     }
 
     @PostMapping("/register")
     public ResponseEntity<Boolean> register(@RequestBody @Valid UserDto userDto) throws BusinessException {
-        return new ResponseEntity<Boolean>(userService.register(userDto),HttpStatus.OK);
+        return new ResponseEntity<>(userService.register(userDto),HttpStatus.OK);
     }
 
 }
